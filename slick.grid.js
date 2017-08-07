@@ -386,6 +386,8 @@ if (typeof Slick === "undefined") {
             .on("keydown", handleKeyDown);
         $canvas
             .on("keydown", handleKeyDown)
+            .on("mousedown", handleMouseDown)
+            .on("mouseup", handleMouseUp)
             .on("click", handleClick)
             .on("dblclick", handleDblClick)
             .on("contextmenu", handleContextMenu)
@@ -2664,6 +2666,14 @@ if (typeof Slick === "undefined") {
       }
     }
 
+    function handleMouseDown(e){
+       trigger(self.onMouseDown, {grid: self}, e);
+    }
+
+    function handleMouseUp(e){
+       trigger(self.onMouseUp, {grid: self}, e);
+    }
+
     function handleClick(e) {
       if (!currentEditor) {
         // if this click resulted in some cell child node getting focus,
@@ -3742,6 +3752,8 @@ if (typeof Slick === "undefined") {
       "onBeforeFooterRowCellDestroy": new Slick.Event(),
       "onMouseEnter": new Slick.Event(),
       "onMouseLeave": new Slick.Event(),
+      "onMouseDown": new Slick.Event(),
+      "onMouseUp": new Slick.Event(),
       "onClick": new Slick.Event(),
       "onDblClick": new Slick.Event(),
       "onContextMenu": new Slick.Event(),
